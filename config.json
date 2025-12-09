@@ -1,26 +1,33 @@
 {
   "name": "Save and return later without email and return code",
   "description": "Enable this module to save and return later without email and return code",
-
   "namespace": "Unisante\\SaveAndReturnLater",
-
   "authors": [
     {
       "name": "Noemi Romano",
       "email": "noemi.romano@epfl.ch",
       "institution": "Ecole Polytéchique Fédérale de Lausanne"
+    },
+    {
+      "name": "Grégory Dozot",
+      "email": "gregory.dozot@heig-vd.ch",
+      "institution": "Haute Ecole d'Ingénierie et de Gestion du Canton de Vaud"
     }
   ],
-
   "permissions": [
     "redcap_every_page_top"
   ],
-
-  "project-settings" : [
+  "project-settings": [
     {
       "key": "study_name",
       "name": "Study Name",
       "required": false,
+      "type": "text"
+    },
+    {
+      "key": "return_web_site_url",
+      "name": "Web Site URL",
+      "required": true,
       "type": "text"
     }
   ]
