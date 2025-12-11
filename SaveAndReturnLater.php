@@ -12,11 +12,10 @@ class SaveAndReturnLater extends \ExternalModules\AbstractExternalModule
         ]);
 
         $survey_name = $_REQUEST['survey_name'];
-        $survey_status = $_REQUEST['survey_status'];
         # Ask to Vincent why this parameter isn't available here
         #$redirectUrl = $this->getProjectSetting('return_web_site_url');
         
-        header('Location: '."http://localhost:8080/submit-survey//?survey_name=$survey_name&survey_status=$survey_status");
+        header('Location: '."http://localhost:8080/submit-survey//?survey_name=$survey_name&survey_status=Completed");
         die();
     }
 
