@@ -25,40 +25,11 @@ class SaveAndReturnLater extends \ExternalModules\AbstractExternalModule
                 $instrument =  $row['form_name'];
             }
 
-            $this->log("Mon message de log", [
-                "details" => "instrument: $instrument"
-            ]);
-
             $redirectUrl = $this->getProjectSetting('return_web_site_url');
-            $this->log("Mon message de log", [
-                "details" => "url: $redirectUrl"
-            ]);
             $url = "$redirectUrl?survey_name=$instrument&survey_status=Incomplete";
             
-            print "<link rel=\"stylesheet\" type=\"text/css\" href=\"".$this->getUrl("style.css")."\" media=\"screen\">"; ?>
-
-          <script type = "text/javascript">
-            $(document).ready(function(){
-
-                //Hide existing fields (email, return code)
-                $(document.querySelector("#return_instructions > div:nth-child(2)")).remove();
-                $(document.querySelector("#return_instructions > div:nth-child(2)")).remove();
-                $(document.querySelector("#return_continue_form > b")).remove();
-
-                //Replace text of #provideEmail div
-                $('#provideEmail').html("");
-
-                //Append button which allows to return to instruments
-                $( "#return_instructions" ).append('<button class = "jqbutton" id="redirect_to_instruments">OK</button>');
-
-                //On click, return to instruments page
-                $("#redirect_to_instruments").click(function() {
-                    location.href = "<?php echo $url; ?>";
-
-                })
-            })
-        </script>
-     <?php
+            header('Location: '."$url");
+            die();
         }
     }
 }
