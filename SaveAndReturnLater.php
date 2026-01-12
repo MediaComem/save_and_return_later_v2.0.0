@@ -11,7 +11,7 @@ class SaveAndReturnLater extends \ExternalModules\AbstractExternalModule
         $redirectUrl = $this->getProjectSetting('return_web_site_url', $project_id);
         
         header('Location: '."$redirectUrl?survey_name=$survey_name&survey_status=Completed");
-        $module->exitAfterHook();
+        $this->exitAfterHook();
     }
 
     public function redcap_every_page_top()
@@ -29,7 +29,7 @@ class SaveAndReturnLater extends \ExternalModules\AbstractExternalModule
             $url = "$redirectUrl?survey_name=$instrument&survey_status=Incomplete";
             
             header('Location: '."$url");
-            $module->exitAfterHook();
+            $this->exitAfterHook();
         }
     }
 }
