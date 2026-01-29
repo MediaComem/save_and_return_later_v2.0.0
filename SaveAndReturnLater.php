@@ -9,8 +9,12 @@ class SaveAndReturnLater extends \ExternalModules\AbstractExternalModule
         $survey_name = $_REQUEST['survey_name'];
         $project_id = $_REQUEST['pid'];
         $redirectUrl = $this->getProjectSetting('return_web_site_url', $project_id);
+
+        $redirectUrl = filter_var($redirectUrl, FILTER_SANITIZE_URL);
+        $survey_name = rawurlencode($survey_name); 
+        $survey_status = rawurlencode("Completed");
         
-        header('Location: '."$redirectUrl?survey_name=$survey_name&survey_status=Completed");
+        header("Location: {$redirectUrl}?survey_name={$survey_name}&survey_status={$survey_status}");
         $this->exitAfterHook();
     }
 
@@ -26,9 +30,10 @@ class SaveAndReturnLater extends \ExternalModules\AbstractExternalModule
             }
 
             $redirectUrl = $this->getProjectSetting('return_web_site_url');
-            $url = "$redirectUrl?survey_name=$instrument&survey_status=Incomplete";
-            
-            header('Location: '."$url");
+            $url = filter_var($redirectUrl, FILTER_SANITIZE_URL);
+            $survey_name = rawurlencode($instrument); 
+            $survey_status = rawurlencode("Incomplete");
+            header("Location: {$url}?survey_name={$survey_name}&survey_status={$survey_status}");
             $this->exitAfterHook();
         }
     }
